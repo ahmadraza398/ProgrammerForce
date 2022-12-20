@@ -1,8 +1,6 @@
 <?php
 
 namespace Database\Seeders\migration\database\seeders;
-
-use Faker\Factory as Faker;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +15,6 @@ class StudentSeeder extends Seeder
      */
     public function run()
     {
-    //  $faker= Faker::create();
      DB::table('student')->insert([
         "name" =>Str::random(20),
         "contact" =>Str::random(15),

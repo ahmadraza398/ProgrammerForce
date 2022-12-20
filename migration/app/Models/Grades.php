@@ -10,10 +10,10 @@ class Grades extends Model
     use HasFactory;
     use HasFactory;
     protected $fillable = [
-        'grades',
+        'grades'
     ];
     public function studentgrades()
     {
-        return $this->belongsTo(Student::class,"grades");
+        return $this->belongsTo(Grades::class,"grades");
     }
 }

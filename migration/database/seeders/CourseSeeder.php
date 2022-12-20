@@ -17,7 +17,7 @@ class CourseSeeder extends Seeder
     public function run()
     {
        for ($i=0; $i < 3; $i++) {
-        DB::table('course')->insert([
+        DB::table('courses')->insert([
             "courses" =>Str::random(20),
         ]);
        }
