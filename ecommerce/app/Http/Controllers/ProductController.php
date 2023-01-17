@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         $product= Product::all();
-        return response()->json([$product,'status'=>true, 'message'=>"All product Successfully"]);
+        return response()->json([$product,'status'=>true, 'message'=>"All Product Successfully"]);
     }
 
     /**
@@ -53,7 +53,7 @@ class ProductController extends Controller
             $input['image'] = "$profileImage";
         }
         $product= Product::create($request->all());
-        return response()->json([$product,'status'=>true, 'message'=>"product has store Successfully"]);
+        return response()->json([$product,'status'=>true, 'message'=>"Product has store Successfully"]);
     }
 
     /**
@@ -65,7 +65,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product=Product::find($id);
-        return response()->json([$product,'status'=>true, 'message'=>"product has show Successfully"]);
+        return response()->json([$product,'status'=>true, 'message'=>"Product has show Successfully"]);
     }
 
     /**
@@ -88,10 +88,25 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'ptitle'=>'required',
+            'pdescription'=>'required',
+            'pimage'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'pprice'=>'required',
+            'cid'=>'required',
+        ]);
+        $input = $request->all();
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
 
         $product=Product::find($id);
         $product->update($request->all());
-        return response()->json([$product,'status'=>true, 'message'=>"Category Update Successfully"]);
+        return response()->json([$product,'status'=>true, 'message'=>"Product Update Successfully"]);
     }
 
     /**
@@ -103,7 +118,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product= Product::find($id)->delete();
-        return response()->json([$product,'status'=>true, 'message'=>"Category Deleted Successfully"]);
+        return response()->json([$product,'status'=>true, 'message'=>"Product Deleted Successfully"]);
     }
 }
 

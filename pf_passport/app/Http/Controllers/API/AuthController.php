@@ -38,16 +38,16 @@ class AuthController extends Controller
    }
 
 
-//    public function logout(Request $request)
-//    {
-//     $request->user()->token('Token')->revoke();
-//     return response()->json(['msg'=>'logout successful']);
-//    }
+   public function logout(Request $request)
+   {
+    $request->user()->token('Token')->revoke();
+    return response()->json(['msg'=>'logout successful']);
+   }
 
-//    public function mango(Request $req){
-//     $req->user()->token('Token')->revoke();
-//     return response()->json(['msg'=>'logout successful']);
-//    }
+   public function mango(Request $req){
+    $req->user()->token('Token')->revoke();
+    return response()->json(['msg'=>'logout successful']);
+   }
 
 }
 
