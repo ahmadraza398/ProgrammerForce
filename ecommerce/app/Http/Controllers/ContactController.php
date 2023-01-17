@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
-
+// all crude index update store show delete Contact detail
 class ContactController extends Controller
 {
     /**
@@ -12,7 +12,7 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() //All Contact
     {
         $Contact= Contact::all();
         return response()->json([$Contact,'status'=>true, 'message'=>"All Contact Successfully"]);
@@ -34,7 +34,7 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //Contact has store
     {
         $request->validate([
             'fullname'=>'required',
@@ -52,7 +52,7 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) //Contact has show
     {
         $Contact=Contact::find($id);
         return response()->json([$Contact,'status'=>true, 'message'=>"Contact has show Successfully"]);
@@ -76,7 +76,7 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id)//Contact Update
     {
 
         $Contact=Contact::findOrFail($id);
@@ -90,7 +90,7 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id) //Contact Deleted 
     {
         $Contact= Contact::find($id)->delete();
         return response()->json([$Contact,'status'=>true, 'message'=>"Contact Deleted Successfully"]);

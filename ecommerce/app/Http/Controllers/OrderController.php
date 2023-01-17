@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
-
+// all crude index update store show delete ORDER
 class OrderController extends Controller
 {
     /**
@@ -12,7 +12,7 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() //All Order
     {
         $Order= Order::all();
         return response()->json([$Order,'status'=>true, 'message'=>"All Order Successfully"]);
@@ -34,7 +34,7 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //Order has store
     {
         $request->validate([
           'pid'=>'required',
@@ -50,7 +50,7 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id)//Order has show
     {
         $Order=Order::find($id);
         return response()->json([$Order,'status'=>true, 'message'=>"Order has show Successfully"]);
@@ -74,7 +74,7 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) //Order Update
     {
         $request->validate([
             'pid'=>'required',
@@ -92,7 +92,7 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id) //Order Deleted
     {
         $Order= Order::find($id)->delete();
         return response()->json([$Order,'status'=>true, 'message'=>"Order Deleted Successfully"]);

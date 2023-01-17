@@ -13,6 +13,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // ALL PRODUCT DATA FETCH
     public function index()
     {
         $product= Product::all();
@@ -35,6 +36,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //STORE ALL THE PROJECT
     public function store(Request $request)
     {
         $request->validate([
@@ -62,6 +64,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //SHOW ALL THE PRODUCT
     public function show($id)
     {
         $product=Product::find($id);
@@ -86,7 +89,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    //UPDATE PRODUCT
+    public function update(Request $request, $id) // Product Update
     {
         $request->validate([
             'ptitle'=>'required',
@@ -115,7 +119,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    // DELETE ALL PRODUCT
+    public function destroy($id) //Product Deleted
     {
         $product= Product::find($id)->delete();
         return response()->json([$product,'status'=>true, 'message'=>"Product Deleted Successfully"]);

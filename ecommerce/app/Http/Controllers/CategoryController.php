@@ -6,7 +6,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+// all crude index update store show delete CATAGORY
 class CategoryController extends Controller
 {
     /**
@@ -14,6 +14,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //All Category
     public function index()
     {
         $category= Category::all();
@@ -36,7 +37,8 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function store(Request $request) //Category has store
     {
         $request->validate([
             'cname'=>'required',
@@ -53,7 +55,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) //Category has show
     {
         $category=Category::find($id);
         return response()->json([$category,'status'=>true, 'message'=>"Category has show Successfully"]);
@@ -77,7 +79,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id)//Category Update
     {
 
         $category=Category::findOrFail($id);
@@ -92,10 +94,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id) //Category Deleted
     {
         $category= Category::find($id)->delete();
-        // $category=DB::table('categories')->where('cid',$id)->delete();
         return response()->json([$category,'status'=>true, 'message'=>"Category Deleted Successfully"]);
     }
 }
