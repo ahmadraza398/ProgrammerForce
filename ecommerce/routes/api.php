@@ -23,14 +23,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Category Route
 Route::get('/category',[CategoryController::class,'index']);
-Route::get('/category/{id}',[CategoryController::class,'show']);
-Route::post('/category',[CategoryController::class,'store'])->middleware(['auth:api', 'admin']);;
-Route::put('/category/{id}',[CategoryController::class,'update'])->middleware(['auth:api', 'admin']);;
-Route::delete('/category/{id}',[CategoryController::class,'destroy'])->middleware('admin');;
+Route::get('/category/{id}',[CategoryController::class,'show'])->middleware('auth:api');
+Route::post('/category',[CategoryController::class,'store'])->middleware(['auth:api', 'admin']);
+Route::put('/category/{id}',[CategoryController::class,'update'])->middleware(['auth:api', 'admin']);
+Route::delete('/category/{id}',[CategoryController::class,'destroy'])->middleware(['auth:api', 'admin']);
 
 //Product Route
 Route::get('/product',[ProductController::class,'index']);
-Route::get('/product/{id}',[ProductController::class,'show']);
+Route::get('/product/{id}',[ProductController::class,'show'])->middleware('auth:api');
 Route::post('/product',[ProductController::class,'store'])->middleware(['auth:api', 'admin']);
 Route::put('/product/{id}',[ProductController::class,'update'])->middleware(['auth:api', 'admin']);
 Route::delete('/product/{id}',[ProductController::class,'destroy'])->middleware(['auth:api', 'admin']);;
@@ -41,7 +41,7 @@ Route::post('/login',[UserController::class,'login']);
 Route::post('/register',[UserController::class,'register']);
 Route::post('/logout',[UserController::class,'logout'])->middleware('auth:api');
 Route::post('/forgetpassword',[UserController::class,'forgetpassword']);
-Route::post('/reset-forget-password/{token}',[UserController::class,'resetForgetPassword']);
+Route::post('/reset-forget-password/{token}',[UserController::class,'resetForgetPassword'])->middleware('auth:api');
 
 
 //Order  Route
